@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import icon1 from "../../images/icon-1.png";
 import OverHeadTable from './OverHeadTable';
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
@@ -34,6 +33,7 @@ const OverHead = (props) => {
     item === "status" && setType("status")
   };
 
+  ////////////   Data for table filters
   const years =
     [
       2021,
@@ -78,20 +78,17 @@ const OverHead = (props) => {
     props.getNakladni(data);
   };
 
-
   const changeMonth = (month) => {
     setMonth(month);
     const data = { year, month: month.number, status: status.id };
     props.getNakladni(data);
   };
 
-
   const changeStatus = (status) => {
     setStatus(status);
     const data = { year, month: month.number, status: status.id };
     props.getNakladni(data);
   };
-
 
   const openAddNaklModal = () => {
     props.showAddNaklModal()
@@ -188,7 +185,7 @@ const OverHead = (props) => {
                 <div className="table__block-wrapper">
 
                   {
-                    loader || nakladni === null
+                    loader || !nakladni
                       ?
                       <Loader />
                       :

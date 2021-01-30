@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setNaklId } from "../../store/nakladni/actions";
+import { setNaklId, setNaklStatus } from "../../store/nakladni/actions";
+import changeHeight from '../../helpers/tablesHeight';
 
 
 
 const OverHeadTable = (props) => {
-    const onNaklSelect = (event, id) => {
+
+    useEffect(() => {
+        //    Функция изменения высоты таблицы
+        changeHeight();
+    }, [changeHeight]);
+
+
+    const onNaklSelect = (event, id, status) => {
         event.preventDefault();
-        props.setId({ id })
+        props.setId({ id });
+        props.setStatus({ status });
         props.history.push("/accent");
     };
 
@@ -95,7 +104,7 @@ const OverHeadTable = (props) => {
                                     {column.render("Header")}
 
                                     {/* Add a sort direction indicator  */}
-                                    <span>
+                                    <span style={{ position: "absolute" }}>
                                         {column.isSorted
                                             ? column.isSortedDesc
                                                 ? ' 🔽'
@@ -119,8 +128,8 @@ const OverHeadTable = (props) => {
 
                             return (
                                 <tr
-                                    onDoubleClick={(event) => { onNaklSelect(event, row.original.id) }}
-                                    className={row.original.style + ""}
+                                    onDoubleClick={(event) => { onNaklSelect(event, row.original.id, row.original.status) }}
+                                    className={row.original.style + " cursor-pointer"}
 
                                     {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
@@ -142,6 +151,7 @@ const OverHeadTable = (props) => {
 
 const mapDispatchToProps = dispatch => ({
     setId: (id) => dispatch(setNaklId(id)),
+    setStatus: (status) => dispatch(setNaklStatus(status)),
 });
 
 
