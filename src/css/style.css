@@ -1,0 +1,43 @@
+
+.overhead__block-bottom {
+ min-height: 400px !important;
+}
+
+.authoriz__input {
+  margin-bottom: 20px;
+}
+
+.password__input {
+  margin-bottom: 40px;
+}
+
+.skan__button-cancel{
+  width:230px!important;
+  border:2px solid #d9d9da!important;
+  background-color:inherit!important;
+  color:#d9d9da!important;
+}
+
+.skan__button-cancel:hover{
+  border:2px solid #63608b;
+  color:#63608b;
+}
+
+.skan__block-link,.cursor-pointer {
+  cursor: pointer;
+}
+
+.active {
+  z-index: 999 !important;
+}
+
+
+.menu__list-link-user{
+  transition: all 0.3s;
+    font-family: "OpenSans-Bold";
+    padding: 10px 15px 7px 60px;
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+    white-space: nowrap;
+}
